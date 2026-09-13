@@ -700,4 +700,88 @@ async function checkUserComment() {
   const userId = getUserID();
   try {
     const res = await fetch(API_BASE + '/api/comments/check/' + userId);
-  
+      const data = await res.json();
+    if (data.success && data.hasComment) {
+      userHasComment = true; userCommentId = data.comment.id;
+      $('commentForm').style.display = 'none';
+      $('myCommentBox').classList.add('show');
+      $('myCommentText').textContent = data.comment.comment;
+      $('userName').value = data.comment.name;
+    } else {
+      userHasComment = false; userCommentId = null;
+      $('commentForm').style.display = 'block';
+      $('myCommentBox').classList.remove('show');
+      $('editForm').classList.remove('show');
+    }
+  } catch(e) { console.error(e); }
+}
+
+async function loadComments() {
+  try {
+    await checkUserComment();
+    const res = await fetch(API_BASE + '/api/comments');
+    const data = await res.json();
+    const list = $('commentList');
+    if (!data.success || !data.comments.length) {
+      list.innerHTML = '<p style="text-align:center;color:var(--muted);font-size:13px;padding:20px 0;">هنوز نظری ثبت نشده است. اولین نفر باش!</p>';
+      return;
+    }
+    list.innerHTML = data.comments.map(cm => {
+      const isMine = String(cm.id) === String(userCommentId);
+      return '<div class="commentItem' + (isMine ? ' is-mine' : '') + '">' +
+        '<div class="meta"><strong>' + (isMine ? '<span class="mine-badge">شما</span>' : '') + escapeHtml(cm.name) + '</strong>' +
+        '<small>' + new Date(cm.created_at).toLocaleDateString('fa-IR') + '</small></div>' +
+        '<p>' + escapeHtml(cm.comment) + '</p></div>';
+    }).join('');
+  } catch(e) {
+    $('commentList').innerHTML = '<p style="text-align:center;color:var(--muted);font-size:13px;">خطا در بارگذاری نظرات.</p>';
+  }
+}
+
+$('submitComment').onclick = async () => {
+  const name = $('userName').value.trim();
+  const comment = $('userComment').value.trim();
+  const userId = getUserID();
+  if (!name || !comment) { alert('لطفاً نام و نظر خود را وارد کنید.'); return; }
+  try {
+    const res = await fetch(API_BASE + '/api/comments', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ name: name, comment: comment, userId: userId })
+    });
+    const data = await res.json();
+    if (!data.success) { alert(data.error); return; }
+    $('userComment').value = '';
+    await loadComments();
+    alert('✅ نظر شما با موفقیت ثبت شد.');
+  } catch(e) { alert('خطا در ارتباط با سرور.'); }
+};
+  $('editBtn').onclick = () => {
+  $('editForm').classList.add('show');
+  $('editComment').value = $('myCommentText').textContent;
+  setTimeout(() => $('editComment').focus(), 100);
+};
+$('cancelEdit').onclick = () => { $('editForm').classList.remove('show'); };
+$('saveEdit').onclick = async () => {
+  const newComment = $('editComment').value.trim();
+  const userId = getUserID();
+  if (!newComment) { alert('متن نظر نمی‌تواند خالی باشد.'); return; }
+  try {
+    const res = await fetch(API_BASE + '/api/comments/' + userCommentId, {
+      method: 'PUT',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ comment: newComment, userId: userId })
+    });
+    const data = await res.json();
+    if (!data.success) { alert(data.error); return; }
+    $('editForm').classList.remove('show');
+    await loadComments();
+    alert('✅ نظر شما ویرایش شد.');
+  } catch(e) { alert('خطا در ارتباط با سرور.'); }
+};
+
+// ============ مقداردهی اولیه ============
+setLanguage(currentLang);
+</script>
+</body>
+</html>

@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#080307">
 <title>Poppy Playtime | پرونده کارخانه</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
 :root{--red:#ff174d;--red2:#ff4b6e;--dark:#070307;--panel:#12090d;--panel2:#1a0b11;--white:#fff;--muted:#c4aeb5;--line:#ff315522;--bg:#050205;--card-bg:linear-gradient(145deg,#160a10dd,#090509ee)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--white);font-family:Vazirmatn,Arial,sans-serif;overflow-x:hidden;transition:background .3s,color .3s}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Vazirmatn,Inter,Arial,sans-serif;overflow-x:hidden;transition:background .3s,color .3s}
 body.light-mode{--dark:#f5f0f2;--panel:#ffffff;--panel2:#fdf5f7;--white:#1a0b11;--muted:#5a4a50;--line:#ff315544;--bg:#f5f0f2;--card-bg:linear-gradient(145deg,#ffffffdd,#fdf5f7ee)}
 button{font:inherit;cursor:pointer;color:inherit}
 #app{min-height:100vh;position:relative;isolation:isolate}
@@ -18,83 +18,134 @@ body.light-mode #app:before{background:radial-gradient(circle at 12% 12%,#6e071e
 canvas{position:fixed;inset:0;width:100%;height:100%;z-index:-3;opacity:.78}
 .grid{position:fixed;inset:0;z-index:-2;opacity:.13;pointer-events:none;background-image:linear-gradient(#ff174d22 1px,transparent 1px),linear-gradient(90deg,#ff174d22 1px,transparent 1px);background-size:55px 55px;mask-image:linear-gradient(to bottom,black,transparent)}
 .noise{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#progressBar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--red),var(--red2));z-index:9999;width:0%;transition:width .1s;box-shadow:0 0 15px var(--red)}
 .topbar{position:fixed;top:16px;left:16px;right:16px;z-index:40;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 16px;border:1px solid #ff335a33;background:#0b0509b8;border-radius:18px;backdrop-filter:blur(18px);box-shadow:0 10px 45px #0008}
 body.light-mode .topbar{background:#ffffffee}
-.brand{font-weight:900;letter-spacing:2px;font-size:13px}.brand span{color:#ff4c70}
-.actions{display:flex;gap:8px}.lang,.menuBtn,.themeBtn{border:1px solid #ff527055;background:#ff174d0c;border-radius:12px;padding:9px 13px;transition:.2s}
+.brand{font-weight:900;letter-spacing:2px;font-size:13px;font-family:'Oswald',Vazirmatn,sans-serif}
+.brand span{color:#ff4c70}
+.actions{display:flex;gap:8px}
+.lang,.menuBtn,.themeBtn{border:1px solid #ff527055;background:#ff174d0c;border-radius:12px;padding:9px 13px;transition:.2s;font-family:'Oswald',Vazirmatn,sans-serif}
 .lang:hover,.menuBtn:hover,.themeBtn:hover{background:#ff174d22;box-shadow:0 0 25px #ff174d22}
 .screen{min-height:100vh;padding:105px 6vw 65px;display:none;align-items:center;justify-content:center;animation:screenIn .65s cubic-bezier(.2,.8,.2,1)}
-.screen.active{display:flex}@keyframes screenIn{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+.screen.active{display:flex}
+@keyframes screenIn{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
 .hero{text-align:center;max-width:1050px}
-.kicker{font-size:12px;letter-spacing:5px;color:#ff6b88;margin-bottom:20px;text-transform:uppercase}
-.hero h1{font-size:clamp(42px,9vw,130px);line-height:.95;margin:0;font-weight:900;letter-spacing:-2px;padding:0 10px;background:linear-gradient(180deg,#fff,#ffe9ee 33%,#ff4c71 70%,#a9072e);-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 28px #ff174d55)}
-.hero p{color:var(--muted);line-height:2;font-size:clamp(15px,2vw,20px);max-width:780px;margin:32px auto}
-.cta{position:relative;overflow:hidden;border:1px solid #ff668355;border-radius:15px;padding:15px 42px;background:linear-gradient(135deg,#2a0a13,#a80b36);box-shadow:0 0 35px #ff174d2e,inset 0 0 25px #ffb4c01a;transition:.25s;font-weight:800}
+.kicker{font-size:12px;letter-spacing:5px;color:#ff6b88;margin-bottom:20px;text-transform:uppercase;font-family:'Oswald',sans-serif}
+.hero h1{font-size:clamp(48px,10vw,150px);line-height:.95;margin:0;font-weight:900;letter-spacing:1px;padding:0 10px;font-family:'Cinzel Decorative',serif;background:linear-gradient(180deg,#fff,#ffe9ee 33%,#ff4c71 70%,#a9072e);-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 30px #ff174d66)}
+body:not(.light-mode) .hero h1{animation:flicker 6s infinite}
+@keyframes flicker{0%,19%,21%,23%,25%,54%,56%,100%{opacity:1}20%,24%,55%{opacity:.85}}
+.hero p{color:var(--muted);line-height:2;font-size:clamp(15px,2vw,19px);max-width:780px;margin:32px auto}
+.cta{position:relative;overflow:hidden;border:1px solid #ff668355;border-radius:15px;padding:15px 42px;background:linear-gradient(135deg,#2a0a13,#a80b36);box-shadow:0 0 35px #ff174d2e,inset 0 0 25px #ffb4c01a;transition:.25s;font-weight:800;font-family:'Oswald',Vazirmatn,sans-serif;letter-spacing:1px}
 .cta:before{content:"";position:absolute;inset:-80%;background:linear-gradient(90deg,transparent,#fff5,transparent);transform:translateX(-70%) rotate(15deg);animation:shine 3.4s infinite}
-@keyframes shine{55%,100%{transform:translateX(70%) rotate(15deg)}}.cta:hover{transform:translateY(-4px);box-shadow:0 0 55px #ff174d55}
-.section{width:min(1250px,100%)}.heading{text-align:center;margin-bottom:34px}.heading h2{font-size:clamp(31px,5vw,56px);margin:0 0 7px}.heading p{color:var(--muted);margin:0}
+@keyframes shine{55%,100%{transform:translateX(70%) rotate(15deg)}}
+.cta:hover{transform:translateY(-4px);box-shadow:0 0 55px #ff174d88}
+.section{width:min(1250px,100%)}
+.heading{text-align:center;margin-bottom:34px}
+.heading h2{font-size:clamp(31px,5vw,56px);margin:0 0 7px;font-family:'Oswald',Vazirmatn,sans-serif;font-weight:700;letter-spacing:1px}
+.heading p{color:var(--muted);margin:0}
 .navgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:24px}
 .navcard{border:1px solid #ff31552c;background:linear-gradient(145deg,#170910,#0c0609);padding:15px 10px;border-radius:15px;text-align:center;transition:.25s;min-height:74px}
 body.light-mode .navcard{background:linear-gradient(145deg,#fff,#fdf5f7)}
-.navcard:hover{transform:translateY(-4px);border-color:#ff496c88;box-shadow:0 12px 35px #ff174d18}.navcard strong{display:block}.navcard small{color:#b28f98}
+.navcard:hover{transform:translateY(-4px);border-color:#ff496c88;box-shadow:0 12px 35px #ff174d18}
+.navcard strong{display:block;font-family:'Oswald',Vazirmatn,sans-serif}
+.navcard small{color:#b28f98}
 .content{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .card{background:var(--card-bg);border:1px solid #ff315526;border-radius:24px;padding:24px;box-shadow:0 18px 65px #0009;position:relative;overflow:hidden}
 .card:after{content:"";position:absolute;width:170px;height:170px;right:-100px;bottom:-100px;border-radius:50%;background:#ff174d16;filter:blur(15px)}
-.card h3{margin:0 0 12px;font-size:25px}.card h3 span{color:#ff5577}.card p,.card li{color:var(--muted);line-height:2}.card ul{padding-right:22px}
-.chapter{scroll-margin-top:95px}.chapter .year{color:#ff6a88;font-size:12px;letter-spacing:2px}.chapter h3{font-size:31px}
-.full{grid-column:1/-1}.quote{border-right:3px solid var(--red);padding:10px 18px;background:#ff174d09;color:#f4dce2;border-radius:10px;margin:15px 0}
+.card h3{margin:0 0 12px;font-size:25px;font-family:'Oswald',Vazirmatn,sans-serif;font-weight:600}
+.card h3 span{color:#ff5577}
+.card p,.card li{color:var(--muted);line-height:2}
+.card ul{padding-right:22px}
+.chapter{scroll-margin-top:95px}
+.chapter .year{color:#ff6a88;font-size:12px;letter-spacing:2px;font-family:'Oswald',sans-serif}
+.chapter h3{font-size:31px}
+.full{grid-column:1/-1}
+.quote{border-right:3px solid var(--red);padding:10px 18px;background:#ff174d09;color:#f4dce2;border-radius:10px;margin:15px 0}
 body.light-mode .quote{color:#5a4a50}
-.card-image{margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#0a0508;display:flex;align-items:center;justify-content:center;min-height:200px}
-.card-image img{width:100%;height:300px;object-fit:cover;display:block}
-.char-image{margin:10px 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#0a0508;min-height:120px;display:flex;align-items:center;justify-content:center}
-.char-image img{width:100%;height:180px;object-fit:cover;display:block}
-.characterGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.char{border:1px solid #ff31552c;background:#10070c;padding:18px;border-radius:18px;min-height:160px;transition:.25s}
+.chapter-banner{margin-bottom:20px;border-radius:18px;overflow:hidden;border:1px solid var(--line);position:relative;aspect-ratio:16/7;background:#0a0508}
+.chapter-banner img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.chapter-banner:hover img{transform:scale(1.05)}
+.characterGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.char{border:1px solid #ff31552c;background:#10070c;padding:16px;border-radius:18px;transition:.3s;cursor:pointer}
 body.light-mode .char{background:#fff}
-.char:hover{transform:translateY(-4px);border-color:#ff577577}.char b{font-size:18px}.char small{color:#ff6a88;display:block;margin:5px 0 9px}.char p{font-size:13px;line-height:1.9;color:var(--muted)}
+.char:hover{transform:translateY(-5px);border-color:#ff577588;box-shadow:0 15px 40px #ff174d22}
+.char-img{width:100%;height:210px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#1a0812,#2a0a1a);display:flex;align-items:center;justify-content:center;margin:10px 0;border:1px solid var(--line)}
+body.light-mode .char-img{background:linear-gradient(135deg,#fff0f5,#ffe4ec)}
+.char-img img{width:100%;height:100%;object-fit:contain;padding:8px;transition:transform .4s ease}
+.char:hover .char-img img{transform:scale(1.1)}
+.char b{font-size:17px;font-family:'Oswald',Vazirmatn,sans-serif;font-weight:600}
+.char small{color:#ff6a88;display:block;margin:5px 0 4px;font-size:11px;font-family:'Oswald',sans-serif;letter-spacing:1px}
+.char p{font-size:13px;line-height:1.9;color:var(--muted);margin:8px 0 0}
+.filterBar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0 8px}
+.filterBtn{border:1px solid #ff315544;background:#ff174d0c;color:var(--muted);border-radius:999px;padding:8px 18px;font-size:13px;font-family:'Oswald',Vazirmatn,sans-serif;transition:.25s}
+.filterBtn:hover{background:#ff174d22;color:#fff;border-color:#ff496c88}
+.filterBtn.active{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-color:transparent;box-shadow:0 5px 20px #ff174d55}
 .mystery{border-left:2px solid #ff174d;background:linear-gradient(90deg,#ff174d08,transparent);padding:17px;margin:12px 0;border-radius:12px}
-.timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.yearcard{padding:18px 12px;border:1px solid #ff31552c;border-radius:16px;background:#10070b;text-align:center}
+.mystery b{font-family:'Oswald',Vazirmatn,sans-serif}
+.timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.yearcard{padding:18px 12px;border:1px solid #ff31552c;border-radius:16px;background:#10070b;text-align:center;transition:.3s}
 body.light-mode .yearcard{background:#fff}
-.yearcard b{font-size:24px;color:#ff5275;display:block}.yearcard span{font-size:12px;color:#cbb8be}
-.sources a{color:#ff6a88;text-decoration:none}.sources a:hover{text-decoration:underline}
+.yearcard:hover{transform:translateY(-4px);border-color:#ff496c88}
+.yearcard b{font-size:24px;color:#ff5275;display:block;font-family:'Oswald',sans-serif}
+.yearcard span{font-size:12px;color:#cbb8be}
 .footer{padding:50px 20px 30px;display:flex;justify-content:center}
 .footer-card{background:var(--card-bg);border:1px solid var(--line);border-radius:28px;padding:35px 40px;max-width:600px;width:100%;text-align:center;position:relative;overflow:hidden;box-shadow:0 20px 60px #0007}
 .footer-card .glow{position:absolute;width:150px;height:150px;border-radius:50%;filter:blur(30px);opacity:.08}
 .footer-card .glow.tr{top:-50px;right:-50px;background:var(--red)}
 .footer-card .glow.bl{bottom:-50px;left:-50px;background:var(--red2)}
 .footer-card .icon{font-size:36px;margin-bottom:15px}
-.footer-card h3{margin:0 0 10px;font-size:22px}
+.footer-card h3{margin:0 0 10px;font-size:22px;font-family:'Oswald',Vazirmatn,sans-serif}
 .footer-card p{color:var(--muted);margin:0 0 20px;font-size:14px;line-height:1.8}
-.footer-link{display:inline-block;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;text-decoration:none;padding:12px 32px;border-radius:14px;font-weight:700;font-size:14px;box-shadow:0 8px 25px #ff174d44;transition:.3s;border:1px solid #ff668355}
+.footer-link{display:inline-block;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;text-decoration:none;padding:12px 32px;border-radius:14px;font-weight:700;font-size:14px;box-shadow:0 8px 25px #ff174d44;transition:.3s;border:1px solid #ff668355;font-family:'Oswald',sans-serif}
 .footer-link:hover{transform:translateY(-3px);box-shadow:0 12px 35px #ff174d66}
 .footer-bottom{margin-top:25px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
-.modal{position:fixed;inset:0;z-index:60;background:#000d;backdrop-filter:blur(15px);display:none;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}
-.modalPanel{width:min(920px,100%);max-height:88vh;overflow:auto;background:linear-gradient(145deg,#180910,#080508);border:1px solid #ff496b77;border-radius:25px;padding:28px;box-shadow:0 30px 100px #000}
-body.light-mode .modalPanel{background:linear-gradient(145deg,#fff,#fdf5f7)}
-.close{float:left;width:42px;height:42px;border-radius:50%;background:#fff08;border:1px solid #ffffff22;color:#fff;font-size:22px}
-.modalTitle{font-size:35px;margin:0 0 16px;color:#ff6b89}.type{white-space:pre-wrap;line-height:2;color:#e5d8dc}
-body.light-mode .type{color:#5a4a50}
-.badge{display:inline-block;color:#ff7a96;border:1px solid #ff315533;padding:6px 10px;border-radius:999px;font-size:11px;margin:3px}
+.lightbox{position:fixed;inset:0;z-index:200;background:#000e;backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;padding:20px;animation:fadeIn .3s}
+.lightbox.show{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.lightbox img{max-width:95vw;max-height:90vh;object-fit:contain;border-radius:16px;box-shadow:0 30px 100px #ff174d55;animation:zoomIn .3s}
+@keyframes zoomIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.lightbox .closeX{position:absolute;top:20px;right:20px;width:50px;height:50px;border-radius:50%;background:#ff174d;border:none;color:#fff;font-size:26px;cursor:pointer;box-shadow:0 5px 25px #ff174d88}
+.backTop{position:fixed;bottom:30px;right:30px;z-index:99;width:55px;height:55px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red2));border:none;color:#fff;font-size:22px;box-shadow:0 8px 30px #ff174d66;cursor:pointer;transition:.3s;display:none;align-items:center;justify-content:center}
+.backTop.show{display:flex}
+.backTop:hover{transform:translateY(-5px) scale(1.08)}
 .chatButton{position:fixed;bottom:30px;left:30px;z-index:100;display:none}
 .chatButton button{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red2));border:none;color:#fff;font-size:24px;box-shadow:0 8px 30px #ff174d55;cursor:pointer;transition:.3s}
 .chatButton button:hover{transform:scale(1.1)}
-.commentModal{position:fixed;bottom:100px;left:30px;z-index:101;width:380px;max-height:500px;background:var(--panel);border:1px solid var(--line);border-radius:24px;box-shadow:0 20px 80px #0008;display:none;flex-direction:column;overflow:hidden}
-.commentHeader{padding:20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-.commentHeader h4{margin:0;color:var(--red2)}
-.commentHeader button{background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
-.commentList{flex:1;overflow-y:auto;padding:15px;display:flex;flex-direction:column;gap:12px;max-height:250px}
+.commentModal{position:fixed;bottom:100px;left:30px;z-index:101;width:380px;max-height:520px;background:var(--panel);border:1px solid var(--line);border-radius:24px;box-shadow:0 20px 80px #0008;display:none;flex-direction:column;overflow:hidden}
+.commentHeader{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.commentHeader h4{margin:0;color:var(--red2);font-size:16px}
+.commentHeader button{background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:0 8px}
+.commentList{flex:1;overflow-y:auto;padding:15px;display:flex;flex-direction:column;gap:12px;max-height:280px;min-height:100px}
 .commentItem{background:var(--dark);padding:12px;border-radius:12px;border:1px solid var(--line)}
 .commentItem .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .commentItem .meta strong{color:var(--red2);font-size:13px}
 .commentItem .meta small{color:var(--muted);font-size:10px}
-.commentItem p{margin:0;font-size:13px;line-height:1.8;color:var(--muted)}
+.commentItem p{margin:0;font-size:13px;line-height:1.8;color:var(--muted);word-break:break-word}
+.commentItem.is-mine{border-color:#ff4b6e88;background:linear-gradient(145deg,#1d0a10,#2a0d16)}
+.mine-badge{display:inline-block;background:#ff174d;color:#fff;padding:2px 8px;border-radius:999px;font-size:9px;margin-right:6px}
 .commentForm{padding:15px;border-top:1px solid var(--line)}
-.commentForm input,.commentForm textarea{width:100%;padding:10px;margin-bottom:8px;background:var(--dark);border:1px solid var(--line);border-radius:10px;color:var(--white);font-family:inherit;resize:none}
-.commentForm button{width:100%;padding:10px;background:linear-gradient(135deg,var(--red),var(--red2));border:none;border-radius:10px;color:#fff;font-weight:700;cursor:pointer}
+.commentForm input,.commentForm textarea{width:100%;padding:10px;margin-bottom:8px;background:var(--dark);border:1px solid var(--line);border-radius:10px;color:var(--white);font-family:inherit;resize:none;font-size:13px}
+.commentForm button{width:100%;padding:11px;background:linear-gradient(135deg,var(--red),var(--red2));border:none;border-radius:10px;color:#fff;font-weight:700;cursor:pointer;font-size:13px}
+.myCommentBox{padding:15px;border-top:1px solid var(--line);display:none}
+.myCommentBox.show{display:block}
+.myCommentBox .label{color:var(--muted);font-size:11px;margin-bottom:6px}
+.myCommentBox .myText{background:var(--dark);border:1px solid #ff4b6e66;border-radius:10px;padding:12px;margin-bottom:10px;font-size:13px;line-height:1.8;color:var(--white)}
+.editBtn{width:100%;padding:10px;background:transparent;border:1px solid #ff4b6e88;border-radius:10px;color:#ff4b6e;font-weight:700;cursor:pointer;font-size:13px}
+.editBtn:hover{background:#ff174d22}
+.editForm{padding:15px;border-top:1px solid var(--line);display:none}
+.editForm.show{display:block}
+.editForm textarea{width:100%;padding:10px;margin-bottom:8px;background:var(--dark);border:1px solid var(--line);border-radius:10px;color:var(--white);font-family:inherit;resize:none;font-size:13px}
+.editForm .row{display:flex;gap:8px}
+.editForm .saveBtn{flex:1;padding:10px;background:linear-gradient(135deg,var(--red),var(--red2));border:none;border-radius:10px;color:#fff;font-weight:700;cursor:pointer;font-size:13px}
+.editForm .cancelBtn{flex:1;padding:10px;background:transparent;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-weight:600;cursor:pointer;font-size:13px}
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.fade-in.visible{opacity:1;transform:none}
 @media(max-width:900px){.navgrid{grid-template-columns:repeat(3,1fr)}.characterGrid{grid-template-columns:repeat(2,1fr)}.content{grid-template-columns:1fr}}
-@media(max-width:520px){.topbar{top:8px}.brand{font-size:11px}.navgrid{grid-template-columns:repeat(2,1fr)}.characterGrid{grid-template-columns:1fr}.hero h1{letter-spacing:-1px;font-size:clamp(38px,11vw,70px)}.screen{padding:95px 14px 45px}.commentModal{width:calc(100vw - 40px);left:20px}.card-image img,.card-image{height:220px}}
+@media(max-width:520px){.topbar{top:8px}.brand{font-size:11px}.navgrid{grid-template-columns:repeat(2,1fr)}.characterGrid{grid-template-columns:1fr}.hero h1{letter-spacing:0;font-size:clamp(38px,11vw,70px)}.screen{padding:95px 14px 45px}.commentModal{width:calc(100vw - 40px);left:20px}.chapter-banner{aspect-ratio:16/9}.backTop{bottom:100px;right:20px;width:50px;height:50px}}
 </style>
 </head>
 <body>
+<div id="progressBar"></div>
 <div id="app">
 <canvas id="bg"></canvas><div class="grid"></div><div class="noise"></div>
 <header class="topbar">
@@ -105,8 +156,7 @@ body.light-mode .type{color:#5a4a50}
   <button class="menuBtn" id="homeBtn">⌂</button>
  </div>
 </header>
-
-<section class="screen active" id="home">
+ <section class="screen active" id="home">
  <div class="hero">
   <div class="kicker" data-i18n="kicker">PLAYTIME CO. // CLASSIFIED ARCHIVE</div>
   <h1 data-i18n="hero_title">POPPY<br>PLAYTIME</h1>
@@ -114,9 +164,11 @@ body.light-mode .type{color:#5a4a50}
   <button class="cta" id="openArchive" data-i18n="open_archive">ورود به آرشیو</button>
  </div>
 </section>
-  <section class="screen" id="archive">
+
+<section class="screen" id="archive">
  <div class="section">
   <div class="heading"><h2 data-i18n="archive_title">آرشیو POPPY PLAYTIME</h2><p data-i18n="archive_desc">یک بخش را انتخاب کن؛ هر کارت یک پرونده‌ی جداگانه را باز می‌کند.</p></div>
+
   <div class="navgrid">
    <button class="navcard" data-target="story"><strong data-i18n="nav_story">داستان</strong><small data-i18n="nav_story_sub">Chapter 1–5</small></button>
    <button class="navcard" data-target="characters"><strong data-i18n="nav_char">شخصیت</strong><small data-i18n="nav_char_sub">پرونده شخصیت‌ها</small></button>
@@ -127,101 +179,147 @@ body.light-mode .type{color:#5a4a50}
   </div>
 
   <div id="story" class="content">
-   <article class="card full chapter">
+
+   <article class="card full chapter fade-in">
     <span class="year">2021 • CHAPTER 01</span>
-    <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Poppy_Playtime_cover.jpg" alt="Chapter 1" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff4b6e;font-size:60px;\'>🎁</span>'"></div>
+    <div class="chapter-banner"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/Ch1header.webp" alt="Chapter 1" loading="lazy"></div>
     <h3 data-i18n="ch1_title">Chapter 1 — A Tight Squeeze</h3>
     <p data-i18n="ch1_p1">داستان از کارخانه‌ی متروکه‌ی Playtime Co. آغاز می‌شود؛ کارخانه‌ای که کارکنانش سال‌ها پیش ناپدید شده‌اند. بازیکن، که یکی از کارکنان سابق است، با ورود دوباره به کارخانه با GrabPack با سیستم‌های برق، درها و محیط تعامل می‌کند.</p>
-    <p data-i18n="ch1_p2">در مسیر، سرنخ‌هایی از گذشته‌ی کارخانه و پروژه‌های پنهان پیدا می‌شود. Poppy درون یک محفظه‌ی شیشه‌ای قرار دارد و Huggy Wuggy که ابتدا مانند یک عروسک تبلیغاتی بی‌خطر دیده می‌شود، به تهدید اصلی تبدیل می‌شود. پایان فصل با رهایی Poppy و ادامه‌ی مسیر به اعماق کارخانه، داستان را برای فصل بعد باز می‌گذارد.</p>
+    <p data-i18n="ch1_p2">در مسیر، سرنخ‌هایی از گذشته‌ی کارخانه و پروژه‌های پنهان پیدا می‌شود. Poppy درون یک محفظه‌ی شیشه‌ای قرار دارد و Huggy Wuggy که ابتدا مانند یک عروسک تبلیغاتی بی‌خطر دیده می‌شود، به تهدید اصلی تبدیل می‌شود.</p>
     <div class="quote" data-i18n="ch1_quote">هسته‌ی فصل: ناپدیدشدن کارکنان، GrabPack، Huggy Wuggy و نخستین نشانه‌های «اسباب‌بازی‌های زنده».</div>
    </article>
 
-   <article class="card full chapter">
+   <article class="card full chapter fade-in">
     <span class="year">2022 • CHAPTER 02</span>
-    <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Poppy_Playtime_cover.jpg" alt="Chapter 2" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff4b6e;font-size:60px;\'>🕸️</span>'"></div>
+    <div class="chapter-banner"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/Ch2MobEntWebsiteBig.webp" alt="Chapter 2" loading="lazy"></div>
     <h3 data-i18n="ch2_title">Chapter 2 — Fly in a Web</h3>
     <p data-i18n="ch2_p1">بازیکن پس از وقایع فصل اول به بخش‌های عمیق‌تر کارخانه می‌رود و وارد Game Station می‌شود؛ منطقه‌ای که با بازی‌های کودکانه طراحی شده اما در عمل به یک میدان بقا تبدیل شده است.</p>
-    <p data-i18n="ch2_p2">Mommy Long Legs کنترل این بخش را در دست دارد و بازیکن را مجبور می‌کند چند بازی را پشت سر بگذارد. GrabPack در این فصل قابلیت‌های بیشتری پیدا می‌کند و پازل‌های الکتریکی و محیطی گسترده‌تر می‌شوند. در پایان، Mommy شکست می‌خورد اما دست او توسط Prototype برداشته می‌شود؛ سرنخی مهم درباره‌ی هوش و اهداف Prototype.</p>
+    <p data-i18n="ch2_p2">Mommy Long Legs کنترل این بخش را در دست دارد و بازیکن را مجبور می‌کند چند بازی را پشت سر بگذارد. در پایان، Mommy شکست می‌خورد اما دست او توسط Prototype برداشته می‌شود.</p>
     <div class="quote" data-i18n="ch2_quote">هسته‌ی فصل: Game Station، Mommy Long Legs، بازی‌های مرگبار و نخستین نمایش جدی Prototype.</div>
    </article>
 
-   <article class="card full chapter">
+   <article class="card full chapter fade-in">
     <span class="year">2024 • CHAPTER 03</span>
-    <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Poppy_Playtime_cover.jpg" alt="Chapter 3" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff4b6e;font-size:60px;\'>💤</span>'"></div>
+    <div class="chapter-banner"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/Ch3MobEntWebsiteBig.webp" alt="Chapter 3" loading="lazy"></div>
     <h3 data-i18n="ch3_title">Chapter 3 — Deep Sleep</h3>
     <p data-i18n="ch3_p1">داستان وارد Playcare می‌شود؛ یک مرکز بزرگ نگهداری و بازی کودکان که در زیر کارخانه قرار دارد. بازیکن در محیطی بسیار وسیع‌تر با Smiling Critters و به‌خصوص CatNap روبه‌رو می‌شود.</p>
-    <p data-i18n="ch3_p2">CatNap از دود قرمز برای ایجاد خواب، توهم و ناتوانی استفاده می‌کند. DogDay و دیگر موجودات Smiling Critters نیز در سرنوشت Playcare نقش دارند. فصل سوم اطلاعات بیشتری درباره‌ی آزمایش‌ها، ارتباط اسباب‌بازی‌ها با کودکان و جایگاه Prototype آشکار می‌کند.</p>
+    <p data-i18n="ch3_p2">CatNap از دود قرمز برای ایجاد خواب، توهم و ناتوانی استفاده می‌کند. DogDay و دیگر موجودات Smiling Critters نیز در سرنوشت Playcare نقش دارند.</p>
     <div class="quote" data-i18n="ch3_quote">هسته‌ی فصل: Playcare، CatNap، دود قرمز، Smiling Critters و عمیق‌تر شدن راز Bigger Bodies.</div>
    </article>
 
-   <article class="card full chapter">
+   <article class="card full chapter fade-in">
     <span class="year">2025 • CHAPTER 04</span>
-    <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Poppy_Playtime_cover.jpg" alt="Chapter 4" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff4b6e;font-size:60px;\'>🏭</span>'"></div>
+    <div class="chapter-banner"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/DoeyBannerBigger.webp" alt="Chapter 4" loading="lazy"></div>
     <h3 data-i18n="ch4_title">Chapter 4 — Safe Haven</h3>
-    <p data-i18n="ch4_p1">بازیکن به پایین‌ترین و ناشناخته‌ترین بخش‌های کارخانه نزدیک‌تر می‌شود. Chapter 4 فضای کارخانه را از یک مجموعه‌ی متروکه به یک شبکه‌ی بسیار بزرگ‌تر از آزمایشگاه‌ها، زندان‌ها و مسیرهای مخفی تبدیل می‌کند.</p>
-    <p data-i18n="ch4_p2">در این بخش، تهدیدها و متحدان تازه وارد می‌شوند و اطلاعات بیشتری درباره‌ی آزمایش‌ها، Prototype و ساختار درونی Playtime Co. به دست می‌آید. مسیر داستان به شکل مستقیم‌تر به رازهای پشت اتفاقات کارخانه و تلاش برای رسیدن به یک پناهگاه امن متصل می‌شود.</p>
+    <p data-i18n="ch4_p1">بازیکن به پایین‌ترین و ناشناخته‌ترین بخش‌های کارخانه نزدیک‌تر می‌شود. Chapter 4 فضای کارخانه را به یک شبکه‌ی بسیار بزرگ‌تر از آزمایشگاه‌ها، زندان‌ها و مسیرهای مخفی تبدیل می‌کند.</p>
+    <p data-i18n="ch4_p2">در این بخش، تهدیدها و متحدان تازه وارد می‌شوند و اطلاعات بیشتری درباره‌ی آزمایش‌ها، Prototype و ساختار درونی Playtime Co. به دست می‌آید.</p>
     <div class="quote" data-i18n="ch4_quote">هسته‌ی فصل: اعماق کارخانه، تهدیدهای تازه، متحدان تازه و افشای لایه‌های جدید پروژه‌های Playtime Co.</div>
    </article>
 
-   <article class="card full chapter">
+   <article class="card full chapter fade-in">
     <span class="year">2026 • CHAPTER 05</span>
-    <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Poppy_Playtime_cover.jpg" alt="Chapter 5" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff4b6e;font-size:60px;\'>💔</span>'"></div>
+    <div class="chapter-banner"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/Ch5EpicGamesBanner.webp" alt="Chapter 5" loading="lazy"></div>
     <h3 data-i18n="ch5_title">Chapter 5 — Broken Things</h3>
     <p data-i18n="ch5_p1">Chapter 5 با عنوان <b>Broken Things</b> داستان را به مرحله‌ای بسیار مهم می‌رساند. معرفی رسمی بازی آن را روی مواجهه با «گرداننده‌ی پشت پرده» اتفاقات ترسناک Playtime Co. متمرکز می‌کند.</p>
-    <p data-i18n="ch5_p2">این فصل ادامه‌ی مستقیم مسیر بازیکن در کارخانه است و با کشف‌های تازه درباره‌ی پشت‌پرده‌ی Playtime Co.، موجودات و آزمایش‌ها، دامنه‌ی رازهای اصلی را گسترده‌تر می‌کند. برای جلوگیری از مخلوط‌شدن اطلاعات رسمی با نظریه‌های طرفداران، این بخش فقط ادعاهای قابل پشتیبانی را به‌عنوان واقعیت قطعی نمایش می‌دهد.</p>
+    <p data-i18n="ch5_p2">این فصل ادامه‌ی مستقیم مسیر بازیکن در کارخانه است و با کشف‌های تازه درباره‌ی پشت‌پرده‌ی Playtime Co.، موجودات و آزمایش‌ها، دامنه‌ی رازهای اصلی را گسترده‌تر می‌کند.</p>
     <div class="quote" data-i18n="ch5_quote">تاریخ انتشار رسمی Steam: 18 فوریه 2026 — توسعه‌دهنده و ناشر: Mob Entertainment.</div>
    </article>
   </div>
-
   <div id="characters" class="content" style="margin-top:30px">
-   <article class="card full">
-    <h3 data-i18n="char_title">پرونده‌ی شخصیت‌ها</h3>
-    <p data-i18n="char_desc">فهرست زیر بر اساس معرفی رسمی شخصیت‌ها و نقش آن‌ها در فصل‌های بازی تنظیم شده است.</p>
-    <div class="characterGrid">
-     <div class="char"><b>Huggy Wuggy</b><small>CH.1</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/5/5e/HuggyRender.png" alt="Huggy Wuggy" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#4b8cff;font-size:50px;\'>🐻</span>'"></div>
-      <p data-i18n="char_huggy">نماد آبی Playtime Co. که از سال 1984 در جهان داستان به‌عنوان یک اسباب‌بازی محبوب معرفی شده است؛ در کارخانه به یکی از اصلی‌ترین تهدیدهای بازیکن تبدیل می‌شود.</p></div>
-     <div class="char"><b>Poppy</b><small>CH.1–5</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/e/e6/PoppyRender.png" alt="Poppy" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff6a88;font-size:50px;\'>🌹</span>'"></div>
-      <p data-i18n="char_poppy">عروسک مشهور Playtime با جعبه‌ی صوتی؛ شخصیت او به هسته‌ی روایت و رازهای کارخانه پیوند خورده است و اطلاعات درباره‌ی اهدافش در طول فصل‌ها گسترش می‌یابد.</p></div>
-     <div class="char"><b>Kissy Missy</b><small>CH.2+</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/8/8e/KissyMissyRender.png" alt="Kissy Missy" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff87b8;font-size:50px;\'>💗</span>'"></div>
-      <p data-i18n="char_kissy">همتای صورتی Huggy Wuggy. در جهان رسمی به‌عنوان دوست/همراه Huggy معرفی شده و در داستان نقش پیچیده‌تری نسبت به یک دشمن ساده دارد.</p></div>
-     <div class="char"><b>Mommy Long Legs</b><small>CH.2</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/4/40/MommyRender.png" alt="Mommy Long Legs" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff5577;font-size:50px;\'>🕷️</span>'"></div>
-      <p data-i18n="char_mommy">یکی از اعضای خانواده‌ی اسباب‌بازی‌های کشسان؛ در Game Station کنترل بازی‌ها را به دست می‌گیرد و بازیکن را وادار به عبور از چالش‌ها می‌کند.</p></div>
-     <div class="char"><b>CatNap</b><small>CH.3</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/c/c2/CatNapRender.png" alt="CatNap" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#b847ff;font-size:50px;\'>🐱</span>'"></div>
-      <p data-i18n="char_catnap">عضو مهم Smiling Critters و تهدید اصلی Playcare؛ با خواب و دود قرمز پیوند دارد و فضای Chapter 3 را شکل می‌دهد.</p></div>
-     <div class="char"><b>DogDay</b><small>CH.3+</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/6/68/DogDayRender.png" alt="DogDay" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ffaa44;font-size:50px;\'>🐶</span>'"></div>
-      <p data-i18n="char_dogday">رهبر Smiling Critters؛ شخصیت رسمی او به‌عنوان موجودی آفتابی، قوی و مصمم معرفی شده است، اما سرنوشتش در Playcare بسیار تاریک می‌شود.</p></div>
-     <div class="char"><b>Miss Delight</b><small>CH.3</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/5/5c/MissDelightRender.png" alt="Miss Delight" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ffcc66;font-size:50px;\'>📚</span>'"></div>
-      <p data-i18n="char_delight">اسباب‌بازی معلم در Schoolhouse که برای آموزش و اجرای قوانین Playcare ساخته شده؛ در داستان تحت ساختار Prototype به تهدید تبدیل می‌شود.</p></div>
-     <div class="char"><b>Prototype</b><small>CH.2–5</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/8/8b/PrototypeRender.png" alt="Prototype" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff174d;font-size:50px;\'>🦾</span>'"></div>
-      <p data-i18n="char_proto">یکی از مرکزی‌ترین رازهای سری؛ موجودی بسیار هوشمند و حیله‌گر که پیروانش او را می‌ستایند و دیگران از او می‌ترسند. اطلاعات رسمی درباره‌ی ماهیت کامل او هنوز تدریجی آشکار می‌شود.</p></div>
-     <div class="char"><b>Smiling Critters</b><small>CH.3+</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/6/68/DogDayRender.png" alt="Smiling Critters" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff87b8;font-size:50px;\'>😊</span>'"></div>
-      <p data-i18n="char_smiling">گروه اسباب‌بازی‌های حیوانی شامل CatNap، DogDay، Bubba Bubbaphant، CraftyCorn، PickyPiggy، Hoppy Hopscotch و KickinChicken.</p></div>
-     <div class="char"><b>Doey the Doughman</b><small>CH.4</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/e/e6/PoppyRender.png" alt="Doey" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ffaa44;font-size:50px;\'>🍩</span>'"></div>
-      <p data-i18n="char_doey">یکی از شخصیت‌های معرفی‌شده در Chapter 4 و بخشی از گسترش جهان موجودات کارخانه.</p></div>
-     <div class="char"><b>Yarnaby</b><small>CH.4</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/4/40/MommyRender.png" alt="Yarnaby" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff6a88;font-size:50px;\'>🧶</span>'"></div>
-      <p data-i18n="char_yarnaby">یکی از تهدیدهای فصل چهارم که بازیکن در بخش‌های عمیق‌تر کارخانه با آن روبه‌رو می‌شود.</p></div>
-     <div class="char"><b>The Doctor</b><small>CH.4–5</small>
-      <div class="char-image"><img src="https://static.wikia.nocookie.net/poppy-playtime/images/8/8b/PrototypeRender.png" alt="The Doctor" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#4b8cff;font-size:50px;\'>🩺</span>'"></div>
-      <p data-i18n="char_doctor">یکی از چهره‌های مرتبط با بخش‌های علمی و آزمایش‌های کارخانه که اطلاعات مربوط به او با پیشرفت داستان گسترش پیدا می‌کند.</p></div>
-    </div>
-   </article>
+ <article class="card full fade-in">
+  <h3 data-i18n="char_title">پرونده‌ی شخصیت‌ها</h3>
+  <p data-i18n="char_desc">روی هر دسته کلیک کن تا فیلتر بشه. روی هر کارت بزن تا عکس بزرگش رو ببینی.</p>
+
+  <div class="filterBar">
+   <button class="filterBtn active" data-filter="all">همه</button>
+   <button class="filterBtn" data-filter="main">اصلی</button>
+   <button class="filterBtn" data-filter="smiling">Smiling</button>
+   <button class="filterBtn" data-filter="nightmare">Nightmare</button>
+   <button class="filterBtn" data-filter="wrongside">Wrongside</button>
   </div>
 
-  <div id="mysteries" class="content" style="margin-top:30px">
-   <article class="card full"><h3 data-i18n="mystery_title">رازها و معماهای بزرگ</h3>
+  <div class="characterGrid" id="charGrid">
+   <div class="char" data-category="main"><b>Huggy Wuggy</b><small>CH.1</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/HuggyFloppy.webp" alt="Huggy Wuggy" loading="lazy"></div>
+    <p data-i18n="char_huggy">نماد آبی Playtime Co. که از سال 1984 به‌عنوان یک اسباب‌بازی محبوب معرفی شده؛ در کارخانه به یکی از اصلی‌ترین تهدیدهای بازیکن تبدیل می‌شود.</p></div>
+   <div class="char" data-category="main"><b>Poppy</b><small>CH.1–5</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/PoppyremasteredNoCrack.webp" alt="Poppy" loading="lazy"></div>
+    <p data-i18n="char_poppy">عروسک مشهور Playtime با جعبه‌ی صوتی؛ شخصیت او به هسته‌ی روایت و رازهای کارخانه پیوند خورده است.</p></div>
+   <div class="char" data-category="main"><b>Kissy Missy</b><small>CH.2+</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/KissyPosed.webp" alt="Kissy Missy" loading="lazy"></div>
+    <p data-i18n="char_kissy">همتای صورتی Huggy Wuggy. در داستان نقش پیچیده‌تری نسبت به یک دشمن ساده دارد.</p></div>
+   <div class="char" data-category="main"><b>Mommy Long Legs</b><small>CH.2</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/Normal_Mommy_Updated.webp" alt="Mommy Long Legs" loading="lazy"></div>
+    <p data-i18n="char_mommy">یکی از اعضای خانواده‌ی اسباب‌بازی‌های کشسان؛ در Game Station کنترل بازی‌ها را به دست می‌گیرد.</p></div>
+   <div class="char" data-category="main"><b>CatNap</b><small>CH.3</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/CatnapFurKatch.webp" alt="CatNap" loading="lazy"></div>
+    <p data-i18n="char_catnap">عضو مهم Smiling Critters و تهدید اصلی Playcare؛ با خواب و دود قرمز پیوند دارد.</p></div>
+   <div class="char" data-category="main"><b>DogDay</b><small>CH.3+</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/DogDayRenderRamchoopsFur.webp" alt="DogDay" loading="lazy"></div>
+    <p data-i18n="char_dogday">رهبر Smiling Critters؛ شخصیت رسمی او به‌عنوان موجودی آفتابی و مصمم معرفی شده است.</p></div>
+   <div class="char" data-category="main"><b>Miss Delight</b><small>CH.3</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/RuinMissDelight.webp" alt="Miss Delight" loading="lazy"></div>
+    <p data-i18n="char_delight">اسباب‌بازی معلم در Schoolhouse که برای آموزش و اجرای قوانین Playcare ساخته شده.</p></div>
+   <div class="char" data-category="main"><b>Prototype</b><small>CH.2–5</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/PrototypeRenderFLOTirettDuBase.webp" alt="Prototype" loading="lazy"></div>
+    <p data-i18n="char_proto">یکی از مرکزی‌ترین رازهای سری؛ موجودی بسیار هوشمند و حیله‌گر که پیروانش او را می‌ستایند.</p></div>
+   <div class="char" data-category="main"><b>Doey the Doughman</b><small>CH.4</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/PPT_Doey_Doughman.webp" alt="Doey" loading="lazy"></div>
+    <p data-i18n="char_doey">یکی از شخصیت‌های معرفی‌شده در Chapter 4 و بخشی از گسترش جهان موجودات کارخانه.</p></div>
+   <div class="char" data-category="main"><b>Yarnaby</b><small>CH.4</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/YarnabyRenderRabbit.webp" alt="Yarnaby" loading="lazy"></div>
+    <p data-i18n="char_yarnaby">یکی از تهدیدهای فصل چهارم که بازیکن در بخش‌های عمیق‌تر کارخانه با آن روبه‌رو می‌شود.</p></div>
+   <div class="char" data-category="main"><b>The Doctor</b><small>CH.4–5</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/OfficialDoctorRender2.webp" alt="The Doctor" loading="lazy"></div>
+    <p data-i18n="char_doctor">یکی از چهره‌های مرتبط با بخش‌های علمی و آزمایش‌های کارخانه.</p></div>
+   <div class="char" data-category="main"><b>Lily</b><small>CH.5</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/LilyHairDown.webp" alt="Lily" loading="lazy"></div>
+    <p data-i18n="char_lily">یکی از شخصیت‌های زنانه‌ی کارخانه با موهای بنفش بلند؛ حضورش لایه‌ی احساسی تازه‌ای به روایت اضافه می‌کند.</p></div>
+   <div class="char" data-category="main"><b>Boxxy Boo</b><small>CH.4+</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/BoxyBooRemake.webp" alt="Boxxy Boo" loading="lazy"></div>
+    <p data-i18n="char_boxxy">شخصیت جعبه‌ای شکل که با شوخی و شیطنت شناخته می‌شود.</p></div>
+   <div class="char" data-category="main"><b>Giblet</b><small>CH.5</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/GibletRenderCH5Fixed.webp" alt="Giblet" loading="lazy"></div>
+    <p data-i18n="char_giblet">شخصیت بامزه با ظاهری پرنده‌سان که در بخش‌های تازه‌ی داستان ظاهر می‌شود.</p></div>
+   <div class="char" data-category="main"><b>Bubba Bubbaphant</b><small>CH.3</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/BubbyOctoOfficial.webp" alt="Bubba Bubbaphant" loading="lazy"></div>
+    <p data-i18n="char_bubba">فیل آبی باهوش گروه Smiling Critters؛ عاشق یادگیری و حل معماست.</p></div>
+  </div>
+ </article>
+
+ <article class="card full fade-in">
+  <h3 data-i18n="smiling_title">Smiling Critters — گروه کامل</h3>
+  <p data-i18n="smiling_desc">گروه هفت‌نفره‌ی اسباب‌بازی‌های حیوانی Playcare که هر کدام یک ویژگی و شخصیت خاص دارند: CatNap، DogDay، Bubba Bubbaphant، CraftyCorn، PickyPiggy، Hoppy Hopscotch و KickinChicken.</p>
+  <div class="chapter-banner" style="aspect-ratio:auto;background:#0a0508;padding:20px"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/SmilingGroupPhoto.webp" alt="Smiling Critters Group" loading="lazy" style="object-fit:contain;height:auto;max-height:400px"></div>
+ </article>
+
+ <article class="card full fade-in">
+  <h3 data-i18n="nightmare_title">Nightmare Critters — گروه کامل</h3>
+  <p data-i18n="nightmare_desc">نسخه‌های تاریک و ترسناک Smiling Critters که در چپتر ۴ معرفی شدند: Baba Chops، Icky Licky، Allister Gator، Rabie Baby، Simon Smoke، Poe، Touille و Maggie Mako.</p>
+  <div class="chapter-banner" style="aspect-ratio:auto;background:#0a0508;padding:20px"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/NightmareGroupPhoto.webp" alt="Nightmare Critters Group" loading="lazy" style="object-fit:contain;height:auto;max-height:400px"></div>
+ </article>
+
+ <article class="card full fade-in">
+  <h3 data-i18n="wrongside_title">Wrongside Outimals — عروسک‌های Chapter 5</h3>
+  <p data-i18n="wrongside_desc">گروهی از عروسک‌های خاص که در Chapter 5 معرفی شدند و با زیپ، دوخت و شکل‌های وارونه شناخته می‌شوند.</p>
+  <div class="characterGrid">
+   <div class="char"><b>Blanky Blankz</b><small>CH.5</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/Blanky_Blankz_Plush.webp" alt="Blanky Blankz" loading="lazy"></div>
+    <p data-i18n="ws_blanky">عروسک سفید با زیپ؛ نماد سکوت و رازهایی که سال‌ها پنهان مانده‌اند.</p></div>
+   <div class="char"><b>Bubby Chumz</b><small>CH.5</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/ChumRenderCH5new.webp" alt="Bubby Chumz" loading="lazy"></div>
+    <p data-i18n="ws_bubby">عروسک بنفش با چشم‌های ضربدری؛ یکی از موجودات خاص و مرموز Chapter 5.</p></div>
+   <div class="char"><b>Goober Gutz</b><small>CH.5</small>
+    <div class="char-img"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/Goober_Gutz_Plush.webp" alt="Goober Gutz" loading="lazy"></div>
+    <p data-i18n="ws_goober">عروسک دوخته‌شده و پچ‌پچی؛ نماد آزمایش‌های پنهان کارخانه.</p></div>
+  </div>
+ </article>
+  </div>
+    <div id="mysteries" class="content" style="margin-top:30px">
+   <article class="card full fade-in">
+    <h3 data-i18n="mystery_title">رازها و معماهای بزرگ</h3>
     <div class="mystery"><b>Bigger Bodies Initiative</b><p data-i18n="mystery_1">پروژه‌ای که پشت بسیاری از آزمایش‌های کارخانه قرار دارد و ایده‌ی تبدیل اسباب‌بازی‌ها به موجودات بسیار بزرگ‌تر و زنده را توضیح می‌دهد.</p></div>
-    <div class="mystery"><b>Prototype / Experiment 1006</b><p data-i18n="mystery_2">هویت، هدف و تاریخچه‌ی کامل Prototype یکی از ستون‌های اصلی معمای سری است. قطعات داستانی مختلف به هوش بالا، جمع‌آوری قطعات موجودات و نفوذ گسترده‌ی او در کارخانه اشاره دارند.</p></div>
+    <div class="mystery"><b>Prototype / Experiment 1006</b><p data-i18n="mystery_2">هویت، هدف و تاریخچه‌ی کامل Prototype یکی از ستون‌های اصلی معمای سری است. قطعات داستانی مختلف به هوش بالا، جمع‌آوری قطعات موجودات و نفوذ گسترده‌ی او اشاره دارند.</p></div>
     <div class="mystery"><b>Hour of Joy</b><p data-i18n="mystery_3">رویداد فاجعه‌باری که به ناپدیدشدن و مرگ کارکنان مرتبط است و از طریق نوارها و سرنخ‌های محیطی روایت می‌شود.</p></div>
     <div class="mystery"><b>آزمایش‌های انسانی و کودکان</b><p data-i18n="mystery_4">یکی از تاریک‌ترین لایه‌های روایت این است که اسباب‌بازی‌های زنده فقط محصولات عادی نیستند و آزمایش‌ها به انسان‌ها و کودکان مرتبط شده‌اند.</p></div>
     <div class="mystery"><b>Red Smoke</b><p data-i18n="mystery_5">دود قرمز CatNap یکی از عناصر کلیدی Chapter 3 است و به خواب، توهم و کنترل ادراک مربوط می‌شود.</p></div>
@@ -230,7 +328,8 @@ body.light-mode .type{color:#5a4a50}
   </div>
 
   <div id="releases" class="content" style="margin-top:30px">
-   <article class="card full"><h3 data-i18n="release_title">منابع انتشار و تاریخ‌ها</h3>
+   <article class="card full fade-in">
+    <h3 data-i18n="release_title">منابع انتشار و تاریخ‌ها</h3>
     <p data-i18n="release_desc">تاریخ‌های اصلی زیر از صفحات رسمی فروش/بازی و سایت رسمی گردآوری شده‌اند.</p>
     <div class="timeline">
       <div class="yearcard"><b>2021</b><span>Chapter 1<br>PC / Steam</span></div>
@@ -238,7 +337,7 @@ body.light-mode .type{color:#5a4a50}
       <div class="yearcard"><b>2024</b><span>Chapter 3<br>Steam</span></div>
       <div class="yearcard"><b>2025</b><span>Chapter 4<br>Steam</span></div>
       <div class="yearcard"><b>2026</b><span>Chapter 5<br>Steam</span></div>
-      <div class="yearcard"><b>2022</b><span>PROJECT: PLAYTIME<br>Steam / Windows</span></div>
+      <div class="yearcard"><b>2022</b><span>PROJECT: PLAYTIME<br>Steam</span></div>
     </div>
     <ul>
       <li data-i18n="release_1">بازی پایه Poppy Playtime در Steam در 12 اکتبر 2021 منتشر شد و Chapter 1 را شامل می‌شود.</li>
@@ -252,7 +351,8 @@ body.light-mode .type{color:#5a4a50}
   </div>
 
   <div id="about" class="content" style="margin-top:30px">
-   <article class="card full"><h3 data-i18n="about_title">توضیحات کامل درباره‌ی Poppy Playtime</h3>
+   <article class="card full fade-in">
+    <h3 data-i18n="about_title">توضیحات کامل درباره‌ی Poppy Playtime</h3>
     <p data-i18n="about_1"><b>سازنده:</b> Mob Entertainment (که در گذشته با نام EnchantedMob شناخته می‌شد).</p>
     <p data-i18n="about_2"><b>سبک:</b> ترس و بقا، معمایی، اول‌شخص، ماجراجویی و روایت‌محور.</p>
     <p data-i18n="about_3"><b>محیط:</b> کارخانه‌ی عظیم و متروکه‌ی Playtime Co. و بخش‌های زیرزمینی آن، از جمله Playcare.</p>
@@ -264,8 +364,9 @@ body.light-mode .type{color:#5a4a50}
   </div>
 
   <div id="project" class="content" style="margin-top:30px">
-   <article class="card full"><h3 data-i18n="project_title">PROJECT: PLAYTIME</h3>
-    <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Poppy_Playtime_cover.jpg" alt="PROJECT: PLAYTIME" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\'color:#ff4b6e;font-size:60px;\'>🎮</span>'"></div>
+   <article class="card full fade-in">
+    <h3 data-i18n="project_title">PROJECT: PLAYTIME</h3>
+    <div class="chapter-banner"><img src="https://raw.githubusercontent.com/hosseinasgari898989-dev/images/main/Project-Playtime_trailer_banner.webp" alt="PROJECT: PLAYTIME" loading="lazy"></div>
     <p data-i18n="project_p1">PROJECT: PLAYTIME یک بازی ترسناک چندنفره‌ی رایگان از Mob Entertainment است که در 12 دسامبر 2022 به‌صورت Early Access روی Steam منتشر شد.</p>
     <p data-i18n="project_p2">در ساختار اصلی، شش بازیکن تلاش می‌کنند یک اسباب‌بازی بزرگ بسازند و هم‌زمان از هیولایی که در کارخانه پرسه می‌زند جان سالم به در ببرند؛ بازیکن هفتم نقش هیولا را بر عهده می‌گیرد.</p>
     <p data-i18n="project_p3"><b>ویژگی‌ها:</b> همکاری آنلاین، نقش‌های Survivor و Monster، نقشه‌های بزرگ کارخانه، پازل، قابلیت‌های قابل ارتقا، Perkها و شخصی‌سازی ظاهری.</p>
@@ -287,11 +388,18 @@ body.light-mode .type{color:#5a4a50}
  </div>
 </section>
 
-<div class="modal" id="modal"><div class="modalPanel"><button class="close" id="close">×</button><h2 class="modalTitle" id="modalTitle"></h2><div class="type" id="type"></div></div></div>
-
 <!-- دکمه شناور نظرات -->
 <div class="chatButton" id="chatButton">
  <button id="chatToggleBtn">💬</button>
+</div>
+
+<!-- دکمه بازگشت به بالا -->
+<button class="backTop" id="backTop" aria-label="Back to top">↑</button>
+
+<!-- لایت‌باکس -->
+<div class="lightbox" id="lightbox">
+ <button class="closeX" id="lightboxClose">×</button>
+ <img id="lightboxImg" src="" alt="">
 </div>
 
 <!-- پنجره نظرات -->
@@ -308,14 +416,22 @@ body.light-mode .type{color:#5a4a50}
   <textarea id="userComment" placeholder="نظر شما..." rows="3" maxlength="500"></textarea>
   <button id="submitComment">ثبت نظر</button>
  </div>
- <div id="editHint" style="display:none;padding:15px;text-align:center;color:var(--muted);font-size:13px;">
-  شما قبلاً نظر ثبت کرده‌اید. می‌توانید نظر خود را ویرایش کنید.
+ <div class="myCommentBox" id="myCommentBox">
+  <div class="label">نظر شما:</div>
+  <div class="myText" id="myCommentText"></div>
+  <button class="editBtn" id="editBtn">✏️ ویرایش نظر</button>
+ </div>
+ <div class="editForm" id="editForm">
+  <textarea id="editComment" rows="3" maxlength="500"></textarea>
+  <div class="row">
+   <button class="saveBtn" id="saveEdit">ذخیره</button>
+   <button class="cancelBtn" id="cancelEdit">انصراف</button>
+  </div>
  </div>
 </div>
 </div>
-  <script>
+ <script>
 // ============ تنظیمات ============
-alert('JS LOADED');
 const API_BASE = 'https://poppy-comments-api.hosseinasgari898989.workers.dev';
 
 // ============ ابزارها ============
@@ -325,12 +441,64 @@ const getUserID = () => {
   if (!id) { id = 'user_' + Math.random().toString(36).substr(2, 12) + Date.now().toString(36); localStorage.setItem('poppy_user_id', id); }
   return id;
 };
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, function(m) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; });
+}
 
 // ============ ناوبری ============
 function showArchive(){ $('home').classList.remove('active'); $('archive').classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
 $('openArchive').onclick = showArchive;
 $('homeBtn').onclick = () => { $('archive').classList.remove('active'); $('home').classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); };
 document.querySelectorAll('.navcard').forEach(b => b.onclick = () => document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth',block:'start'}));
+
+// ============ فیلتر کاراکترها ============
+document.querySelectorAll('.filterBtn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.filterBtn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('#charGrid .char').forEach(c => {
+      if (filter === 'all' || c.dataset.category === filter) {
+        c.style.display = 'block';
+        c.style.animation = 'screenIn .4s';
+      } else {
+        c.style.display = 'none';
+      }
+    });
+  };
+});
+
+// ============ لایت‌باکس ============
+const lightbox = $('lightbox');
+const lightboxImg = $('lightboxImg');
+document.addEventListener('click', e => {
+  if (e.target.tagName === 'IMG' && e.target.closest('.char-img, .chapter-banner')) {
+    lightboxImg.src = e.target.src;
+    lightbox.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+});
+$('lightboxClose').onclick = () => { lightbox.classList.remove('show'); document.body.style.overflow = ''; };
+lightbox.onclick = (e) => { if (e.target === lightbox) { lightbox.classList.remove('show'); document.body.style.overflow = ''; } };
+
+// ============ Scroll Progress + Back to Top ============
+window.addEventListener('scroll', () => {
+  const winScroll = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  $('progressBar').style.width = scrolled + '%';
+  $('backTop').classList.toggle('show', winScroll > 400);
+  const chatBtn = $('chatButton');
+  if (winScroll > 400) { chatBtn.style.display = 'block'; }
+  else { chatBtn.style.display = 'none'; $('commentModal').style.display = 'none'; }
+});
+$('backTop').onclick = () => window.scrollTo({top:0, behavior:'smooth'});
+
+// ============ Fade-in on scroll ============
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 // ============ دوزبانه ============
 const translations = {
@@ -347,43 +515,35 @@ const translations = {
     nav_release: "منابع انتشار", nav_release_sub: "تاریخ و پلتفرم",
     nav_about: "توضیحات", nav_about_sub: "جهان بازی",
     nav_project: "پروژه پلی‌تایم", nav_project_sub: "PROJECT: PLAYTIME",
-    ch1_title: "Chapter 1 — A Tight Squeeze",
-    ch1_p1: "داستان از کارخانه‌ی متروکه‌ی Playtime Co. آغاز می‌شود؛ کارخانه‌ای که کارکنانش سال‌ها پیش ناپدید شده‌اند. بازیکن، که یکی از کارکنان سابق است، با ورود دوباره به کارخانه با GrabPack با سیستم‌های برق، درها و محیط تعامل می‌کند.",
-    ch1_p2: "در مسیر، سرنخ‌هایی از گذشته‌ی کارخانه و پروژه‌های پنهان پیدا می‌شود. Poppy درون یک محفظه‌ی شیشه‌ای قرار دارد و Huggy Wuggy که ابتدا مانند یک عروسک تبلیغاتی بی‌خطر دیده می‌شود، به تهدید اصلی تبدیل می‌شود. پایان فصل با رهایی Poppy و ادامه‌ی مسیر به اعماق کارخانه، داستان را برای فصل بعد باز می‌گذارد.",
-    ch1_quote: "هسته‌ی فصل: ناپدیدشدن کارکنان، GrabPack، Huggy Wuggy و نخستین نشانه‌های «اسباب‌بازی‌های زنده».",
-    ch2_title: "Chapter 2 — Fly in a Web",
-    ch2_p1: "بازیکن پس از وقایع فصل اول به بخش‌های عمیق‌تر کارخانه می‌رود و وارد Game Station می‌شود؛ منطقه‌ای که با بازی‌های کودکانه طراحی شده اما در عمل به یک میدان بقا تبدیل شده است.",
-    ch2_p2: "Mommy Long Legs کنترل این بخش را در دست دارد و بازیکن را مجبور می‌کند چند بازی را پشت سر بگذارد. GrabPack در این فصل قابلیت‌های بیشتری پیدا می‌کند و پازل‌های الکتریکی و محیطی گسترده‌تر می‌شوند. در پایان، Mommy شکست می‌خورد اما دست او توسط Prototype برداشته می‌شود؛ سرنخی مهم درباره‌ی هوش و اهداف Prototype.",
-    ch2_quote: "هسته‌ی فصل: Game Station، Mommy Long Legs، بازی‌های مرگبار و نخستین نمایش جدی Prototype.",
-    ch3_title: "Chapter 3 — Deep Sleep",
-    ch3_p1: "داستان وارد Playcare می‌شود؛ یک مرکز بزرگ نگهداری و بازی کودکان که در زیر کارخانه قرار دارد. بازیکن در محیطی بسیار وسیع‌تر با Smiling Critters و به‌خصوص CatNap روبه‌رو می‌شود.",
-    ch3_p2: "CatNap از دود قرمز برای ایجاد خواب، توهم و ناتوانی استفاده می‌کند. DogDay و دیگر موجودات Smiling Critters نیز در سرنوشت Playcare نقش دارند. فصل سوم اطلاعات بیشتری درباره‌ی آزمایش‌ها، ارتباط اسباب‌بازی‌ها با کودکان و جایگاه Prototype آشکار می‌کند.",
-    ch3_quote: "هسته‌ی فصل: Playcare، CatNap، دود قرمز، Smiling Critters و عمیق‌تر شدن راز Bigger Bodies.",
-    ch4_title: "Chapter 4 — Safe Haven",
-    ch4_p1: "بازیکن به پایین‌ترین و ناشناخته‌ترین بخش‌های کارخانه نزدیک‌تر می‌شود. Chapter 4 فضای کارخانه را از یک مجموعه‌ی متروکه به یک شبکه‌ی بسیار بزرگ‌تر از آزمایشگاه‌ها، زندان‌ها و مسیرهای مخفی تبدیل می‌کند.",
-    ch4_p2: "در این بخش، تهدیدها و متحدان تازه وارد می‌شوند و اطلاعات بیشتری درباره‌ی آزمایش‌ها، Prototype و ساختار درونی Playtime Co. به دست می‌آید. مسیر داستان به شکل مستقیم‌تر به رازهای پشت اتفاقات کارخانه و تلاش برای رسیدن به یک پناهگاه امن متصل می‌شود.",
-    ch4_quote: "هسته‌ی فصل: اعماق کارخانه، تهدیدهای تازه، متحدان تازه و افشای لایه‌های جدید پروژه‌های Playtime Co.",
-    ch5_title: "Chapter 5 — Broken Things",
-    ch5_p1: "Chapter 5 با عنوان <b>Broken Things</b> داستان را به مرحله‌ای بسیار مهم می‌رساند. معرفی رسمی بازی آن را روی مواجهه با «گرداننده‌ی پشت پرده» اتفاقات ترسناک Playtime Co. متمرکز می‌کند.",
-    ch5_p2: "این فصل ادامه‌ی مستقیم مسیر بازیکن در کارخانه است و با کشف‌های تازه درباره‌ی پشت‌پرده‌ی Playtime Co.، موجودات و آزمایش‌ها، دامنه‌ی رازهای اصلی را گسترده‌تر می‌کند. برای جلوگیری از مخلوط‌شدن اطلاعات رسمی با نظریه‌های طرفداران، این بخش فقط ادعاهای قابل پشتیبانی را به‌عنوان واقعیت قطعی نمایش می‌دهد.",
-    ch5_quote: "تاریخ انتشار رسمی Steam: 18 فوریه 2026 — توسعه‌دهنده و ناشر: Mob Entertainment.",
     char_title: "پرونده‌ی شخصیت‌ها",
-    char_desc: "فهرست زیر بر اساس معرفی رسمی شخصیت‌ها و نقش آن‌ها در فصل‌های بازی تنظیم شده است.",
-    char_huggy: "نماد آبی Playtime Co. که از سال 1984 در جهان داستان به‌عنوان یک اسباب‌بازی محبوب معرفی شده است؛ در کارخانه به یکی از اصلی‌ترین تهدیدهای بازیکن تبدیل می‌شود.",
-    char_poppy: "عروسک مشهور Playtime با جعبه‌ی صوتی؛ شخصیت او به هسته‌ی روایت و رازهای کارخانه پیوند خورده است و اطلاعات درباره‌ی اهدافش در طول فصل‌ها گسترش می‌یابد.",
-    char_kissy: "همتای صورتی Huggy Wuggy. در جهان رسمی به‌عنوان دوست/همراه Huggy معرفی شده و در داستان نقش پیچیده‌تری نسبت به یک دشمن ساده دارد.",
-    char_mommy: "یکی از اعضای خانواده‌ی اسباب‌بازی‌های کشسان؛ در Game Station کنترل بازی‌ها را به دست می‌گیرد و بازیکن را وادار به عبور از چالش‌ها می‌کند.",
-    char_catnap: "عضو مهم Smiling Critters و تهدید اصلی Playcare؛ با خواب و دود قرمز پیوند دارد و فضای Chapter 3 را شکل می‌دهد.",
-    char_dogday: "رهبر Smiling Critters؛ شخصیت رسمی او به‌عنوان موجودی آفتابی، قوی و مصمم معرفی شده است، اما سرنوشتش در Playcare بسیار تاریک می‌شود.",
-    char_delight: "اسباب‌بازی معلم در Schoolhouse که برای آموزش و اجرای قوانین Playcare ساخته شده؛ در داستان تحت ساختار Prototype به تهدید تبدیل می‌شود.",
-    char_proto: "یکی از مرکزی‌ترین رازهای سری؛ موجودی بسیار هوشمند و حیله‌گر که پیروانش او را می‌ستایند و دیگران از او می‌ترسند. اطلاعات رسمی درباره‌ی ماهیت کامل او هنوز تدریجی آشکار می‌شود.",
-    char_smiling: "گروه اسباب‌بازی‌های حیوانی شامل CatNap، DogDay، Bubba Bubbaphant، CraftyCorn، PickyPiggy، Hoppy Hopscotch و KickinChicken.",
+    char_desc: "روی هر دسته کلیک کن تا فیلتر بشه. روی هر کارت بزن تا عکس بزرگش رو ببینی.",
+    smiling_title: "Smiling Critters — گروه کامل",
+    smiling_desc: "گروه هفت‌نفره‌ی اسباب‌بازی‌های حیوانی Playcare که هر کدام یک ویژگی و شخصیت خاص دارند: CatNap، DogDay، Bubba Bubbaphant، CraftyCorn، PickyPiggy، Hoppy Hopscotch و KickinChicken.",
+    nightmare_title: "Nightmare Critters — گروه کامل",
+    nightmare_desc: "نسخه‌های تاریک و ترسناک Smiling Critters که در چپتر ۴ معرفی شدند: Baba Chops، Icky Licky، Allister Gator، Rabie Baby، Simon Smoke، Poe، Touille و Maggie Mako.",
+    wrongside_title: "Wrongside Outimals — عروسک‌های Chapter 5",
+    wrongside_desc: "گروهی از عروسک‌های خاص که در Chapter 5 معرفی شدند و با زیپ، دوخت و شکل‌های وارونه شناخته می‌شوند.",
+    char_huggy: "نماد آبی Playtime Co. که از سال 1984 به‌عنوان یک اسباب‌بازی محبوب معرفی شده؛ در کارخانه به یکی از اصلی‌ترین تهدیدهای بازیکن تبدیل می‌شود.",
+    char_poppy: "عروسک مشهور Playtime با جعبه‌ی صوتی؛ شخصیت او به هسته‌ی روایت و رازهای کارخانه پیوند خورده است.",
+    char_kissy: "همتای صورتی Huggy Wuggy. در داستان نقش پیچیده‌تری نسبت به یک دشمن ساده دارد.",
+    char_mommy: "یکی از اعضای خانواده‌ی اسباب‌بازی‌های کشسان؛ در Game Station کنترل بازی‌ها را به دست می‌گیرد.",
+    char_catnap: "عضو مهم Smiling Critters و تهدید اصلی Playcare؛ با خواب و دود قرمز پیوند دارد.",
+    char_dogday: "رهبر Smiling Critters؛ شخصیت رسمی او به‌عنوان موجودی آفتابی و مصمم معرفی شده است.",
+    char_delight: "اسباب‌بازی معلم در Schoolhouse که برای آموزش و اجرای قوانین Playcare ساخته شده.",
+    char_proto: "یکی از مرکزی‌ترین رازهای سری؛ موجودی بسیار هوشمند و حیله‌گر که پیروانش او را می‌ستایند.",
     char_doey: "یکی از شخصیت‌های معرفی‌شده در Chapter 4 و بخشی از گسترش جهان موجودات کارخانه.",
     char_yarnaby: "یکی از تهدیدهای فصل چهارم که بازیکن در بخش‌های عمیق‌تر کارخانه با آن روبه‌رو می‌شود.",
-    char_doctor: "یکی از چهره‌های مرتبط با بخش‌های علمی و آزمایش‌های کارخانه که اطلاعات مربوط به او با پیشرفت داستان گسترش پیدا می‌کند.",
+    char_doctor: "یکی از چهره‌های مرتبط با بخش‌های علمی و آزمایش‌های کارخانه.",
+    char_lily: "یکی از شخصیت‌های زنانه‌ی کارخانه با موهای بنفش بلند؛ حضورش لایه‌ی احساسی تازه‌ای به روایت اضافه می‌کند.",
+    char_boxxy: "شخصیت جعبه‌ای شکل که با شوخی و شیطنت شناخته می‌شود.",
+    char_giblet: "شخصیت بامزه با ظاهری پرنده‌سان که در بخش‌های تازه‌ی داستان ظاهر می‌شود.",
+    char_bubba: "فیل آبی باهوش گروه Smiling Critters؛ عاشق یادگیری و حل معماست.",
+    ws_blanky: "عروسک سفید با زیپ؛ نماد سکوت و رازهایی که سال‌ها پنهان مانده‌اند.",
+    ws_bubby: "عروسک بنفش با چشم‌های ضربدری؛ یکی از موجودات خاص و مرموز Chapter 5.",
+    ws_goober: "عروسک دوخته‌شده و پچ‌پچی؛ نماد آزمایش‌های پنهان کارخانه.",
     mystery_title: "رازها و معماهای بزرگ",
     mystery_1: "پروژه‌ای که پشت بسیاری از آزمایش‌های کارخانه قرار دارد و ایده‌ی تبدیل اسباب‌بازی‌ها به موجودات بسیار بزرگ‌تر و زنده را توضیح می‌دهد.",
-    mystery_2: "هویت، هدف و تاریخچه‌ی کامل Prototype یکی از ستون‌های اصلی معمای سری است. قطعات داستانی مختلف به هوش بالا، جمع‌آوری قطعات موجودات و نفوذ گسترده‌ی او در کارخانه اشاره دارند.",
+    mystery_2: "هویت، هدف و تاریخچه‌ی کامل Prototype یکی از ستون‌های اصلی معمای سری است. قطعات داستانی مختلف به هوش بالا، جمع‌آوری قطعات موجودات و نفوذ گسترده‌ی او اشاره دارند.",
     mystery_3: "رویداد فاجعه‌باری که به ناپدیدشدن و مرگ کارکنان مرتبط است و از طریق نوارها و سرنخ‌های محیطی روایت می‌شود.",
     mystery_4: "یکی از تاریک‌ترین لایه‌های روایت این است که اسباب‌بازی‌های زنده فقط محصولات عادی نیستند و آزمایش‌ها به انسان‌ها و کودکان مرتبط شده‌اند.",
     mystery_5: "دود قرمز CatNap یکی از عناصر کلیدی Chapter 3 است و به خواب، توهم و کنترل ادراک مربوط می‌شود.",
@@ -426,43 +586,35 @@ const translations = {
     nav_release: "Releases", nav_release_sub: "Dates & platforms",
     nav_about: "About", nav_about_sub: "Game world",
     nav_project: "Project Playtime", nav_project_sub: "PROJECT: PLAYTIME",
-    ch1_title: "Chapter 1 — A Tight Squeeze",
-    ch1_p1: "The story begins in the abandoned Playtime Co. factory, whose staff disappeared years ago. The player, a former employee, returns and uses the GrabPack to interact with electrical systems, doors, and the environment.",
-    ch1_p2: "Along the way, clues about the factory's past and hidden projects are discovered. Poppy is found in a glass case, and Huggy Wuggy, initially seen as a harmless promotional toy, becomes the main threat. The chapter ends with Poppy's release and the journey continuing deeper into the factory.",
-    ch1_quote: "Chapter core: staff disappearance, GrabPack, Huggy Wuggy, and the first signs of 'living toys'.",
-    ch2_title: "Chapter 2 — Fly in a Web",
-    ch2_p1: "After the events of Chapter 1, the player descends deeper into the factory and enters the Game Station, an area designed with childish games but effectively a survival arena.",
-    ch2_p2: "Mommy Long Legs controls this section and forces the player through several games. The GrabPack gains more abilities and puzzles expand. In the end, Mommy is defeated, but her hand is taken by the Prototype — an important clue about his intelligence and goals.",
-    ch2_quote: "Chapter core: Game Station, Mommy Long Legs, deadly games, and the first serious appearance of the Prototype.",
-    ch3_title: "Chapter 3 — Deep Sleep",
-    ch3_p1: "The story enters Playcare, a large childcare and play center beneath the factory. The player faces a much larger environment with the Smiling Critters and especially CatNap.",
-    ch3_p2: "CatNap uses red smoke to induce sleep, hallucinations, and incapacitation. DogDay and other Smiling Critters play roles in Playcare's fate. Chapter 3 reveals more about the experiments, the toys' connection to children, and the Prototype's role.",
-    ch3_quote: "Chapter core: Playcare, CatNap, red smoke, Smiling Critters, and the deepening mystery of Bigger Bodies.",
-    ch4_title: "Chapter 4 — Safe Haven",
-    ch4_p1: "The player approaches the lowest and most unknown parts of the factory. Chapter 4 turns the facility from an abandoned complex into a vast network of laboratories, prisons, and hidden paths.",
-    ch4_p2: "New threats and allies emerge, and more information is revealed about the experiments, the Prototype, and Playtime Co.'s internal structure. The story connects more directly to the mysteries behind the factory's events and the search for a safe haven.",
-    ch4_quote: "Chapter core: factory depths, new threats, new allies, and revealing new layers of Playtime Co.'s projects.",
-    ch5_title: "Chapter 5 — Broken Things",
-    ch5_p1: "Chapter 5, titled <b>Broken Things</b>, brings the story to a critical stage. The official reveal focuses on confronting the mastermind behind Playtime Co.'s terrifying events.",
-    ch5_p2: "This chapter directly continues the player's journey in the factory and expands the main mysteries with new discoveries about Playtime Co.'s background, creatures, and experiments.",
-    ch5_quote: "Official Steam release date: February 18, 2026 — Developer & Publisher: Mob Entertainment.",
     char_title: "Character Files",
-    char_desc: "The list below is based on official character introductions and their roles in the game's chapters.",
+    char_desc: "Click any filter to sort. Click any card to view the full image.",
+    smiling_title: "Smiling Critters — Full Group",
+    smiling_desc: "The seven-member animal toy group of Playcare, each with a distinct trait and personality: CatNap, DogDay, Bubba Bubbaphant, CraftyCorn, PickyPiggy, Hoppy Hopscotch, and KickinChicken.",
+    nightmare_title: "Nightmare Critters — Full Group",
+    nightmare_desc: "The dark, terrifying versions of the Smiling Critters introduced in Chapter 4: Baba Chops, Icky Licky, Allister Gator, Rabie Baby, Simon Smoke, Poe, Touille, and Maggie Mako.",
+    wrongside_title: "Wrongside Outimals — Chapter 5 Dolls",
+    wrongside_desc: "A group of unique dolls introduced in Chapter 5, known for their zippers, stitching, and inside-out shapes.",
     char_huggy: "Playtime Co.'s blue mascot, introduced in 1984 as a popular toy; in the factory, he becomes one of the player's main threats.",
-    char_poppy: "Playtime's famous doll with a voice box; her character is tied to the core narrative and the factory's mysteries, with her goals expanding throughout the chapters.",
-    char_kissy: "Huggy Wuggy's pink counterpart. Officially introduced as Huggy's friend/companion, she plays a more complex role than a simple enemy.",
-    char_mommy: "A member of the stretchy toy family; she takes control of the games in the Game Station and forces the player through challenges.",
-    char_catnap: "A key member of the Smiling Critters and the main threat of Playcare; linked to sleep and red smoke, shaping Chapter 3's atmosphere.",
-    char_dogday: "The leader of the Smiling Critters; officially described as a sunny, strong, and determined creature, but his fate in Playcare becomes very dark.",
-    char_delight: "The teacher toy in the Schoolhouse, built to educate and enforce Playcare's rules; she becomes a threat under the Prototype's structure.",
-    char_proto: "One of the series' central mysteries; a highly intelligent and cunning entity worshipped by his followers and feared by others. Official info about his full nature is still being gradually revealed.",
-    char_smiling: "A group of animal toys including CatNap, DogDay, Bubba Bubbaphant, CraftyCorn, PickyPiggy, Hoppy Hopscotch, and KickinChicken.",
+    char_poppy: "Playtime's famous doll with a voice box; her character is tied to the core narrative and the factory's mysteries.",
+    char_kissy: "Huggy Wuggy's pink counterpart. She plays a more complex role than a simple enemy.",
+    char_mommy: "A member of the stretchy toy family; she takes control of the games in the Game Station.",
+    char_catnap: "A key member of the Smiling Critters and the main threat of Playcare; linked to sleep and red smoke.",
+    char_dogday: "The leader of the Smiling Critters; officially described as a sunny and determined creature.",
+    char_delight: "The teacher toy in the Schoolhouse, built to educate and enforce Playcare's rules.",
+    char_proto: "One of the series' central mysteries; a highly intelligent and cunning entity worshipped by his followers.",
     char_doey: "One of the characters introduced in Chapter 4 and part of the expanding world of factory creatures.",
     char_yarnaby: "One of Chapter 4's threats encountered in the deeper parts of the factory.",
-    char_doctor: "One of the figures associated with the factory's scientific divisions and experiments, whose information expands as the story progresses.",
+    char_doctor: "One of the figures associated with the factory's scientific divisions and experiments.",
+    char_lily: "One of the factory's female characters with long purple hair; her presence adds a fresh emotional layer to the narrative.",
+    char_boxxy: "A box-shaped character known for jokes and mischief.",
+    char_giblet: "A comedic bird-like character who appears in the newer parts of the story.",
+    char_bubba: "The smart blue elephant of the Smiling Critters; loves learning and solving puzzles.",
+    ws_blanky: "The white zippered doll; a symbol of silence and secrets hidden for years.",
+    ws_bubby: "The purple doll with cross eyes; one of Chapter 5's unique and mysterious creatures.",
+    ws_goober: "The stitched and patchwork doll; a symbol of the factory's hidden experiments.",
     mystery_title: "Major Mysteries and Puzzles",
     mystery_1: "The project behind many of the factory's experiments, explaining the idea of transforming toys into much larger, living beings.",
-    mystery_2: "The Prototype's identity, purpose, and full history are one of the series' core mysteries. Various story pieces point to his high intelligence, collection of creature parts, and widespread influence in the factory.",
+    mystery_2: "The Prototype's identity, purpose, and full history are one of the series' core mysteries.",
     mystery_3: "The catastrophic event linked to the staff's disappearance and deaths, narrated through tapes and environmental clues.",
     mystery_4: "One of the story's darkest layers is that living toys are not just ordinary products, and experiments are linked to humans and children.",
     mystery_5: "CatNap's red smoke is a key element of Chapter 3, related to sleep, hallucinations, and perception control.",
@@ -488,7 +640,7 @@ const translations = {
     project_p2: "In the main mode, six players try to build a large toy while surviving a monster roaming the factory; the seventh player takes on the monster role.",
     project_p3: "<b>Features:</b> Online co-op, Survivor and Monster roles, large factory maps, puzzles, upgradeable abilities, Perks, and cosmetic customization.",
     project_p4: "<b>Official Steam requirements:</b> Minimum Windows 10, Intel Core i5, 8GB RAM, GTX 1050 or Radeon RX 580, 20GB storage. Recommended: 12GB RAM and RTX 2060 Super or RX 5700 XT.",
-    project_quote: "PROJECT: PLAYTIME differs structurally from the single-player chapters but is set in the same PlaytimeCo. universe and Bigger Bodies Initiative.",
+    project_quote: "PROJECT: PLAYTIME differs structurally from the single-player chapters but is set in the same Playtime Co. universe and Bigger Bodies Initiative.",
     footer_title: "Made by Rubika Channel",
     footer_desc: "Poppy Playtime Archive<br>An interactive information experience for fans"
   }
@@ -507,9 +659,9 @@ function setLanguage(lang) {
   });
   $('lang').textContent = lang === 'fa' ? 'ENGLISH' : 'فارسی';
 }
-
 $('lang').onclick = () => setLanguage(currentLang === 'fa' ? 'en' : 'fa');
 
+// ============ تم دارک/لایت ============
 const themeToggle = $('themeToggle');
 const currentTheme = localStorage.getItem('poppy_theme') || 'dark';
 function setTheme(theme) {
@@ -520,91 +672,32 @@ function setTheme(theme) {
 themeToggle.onclick = () => setTheme(document.body.classList.contains('light-mode') ? 'dark' : 'light');
 setTheme(currentTheme);
 
+// ============ پس‌زمینه ذرات ============
 const c = $('bg'), x = c.getContext('2d'); let W, H, pts = [];
 function resize(){ W = c.width = innerWidth * devicePixelRatio; H = c.height = innerHeight * devicePixelRatio; pts = Array.from({length:58}, () => ({x:Math.random()*W, y:Math.random()*H, r:(2+Math.random()*16)*devicePixelRatio, v:.12+Math.random()*.42, a:Math.random()*6.28, s:Math.random()*.7})); }
 function draw(){ x.clearRect(0,0,W,H); for(const p of pts){ p.y -= p.v * devicePixelRatio; p.x += Math.sin(p.a += .006) * p.s; if(p.y < -50) p.y = H + 50; x.beginPath(); x.arc(p.x,p.y,p.r,0,Math.PI*2); x.fillStyle='rgba(255,35,78,.045)'; x.fill(); x.strokeStyle='rgba(255,90,120,.10)'; x.stroke(); } requestAnimationFrame(draw); }
 addEventListener('resize', resize); resize(); draw();
 
+// ============ سیستم نظرات ============
 let userHasComment = false;
 let userCommentId = null;
 
-window.addEventListener('scroll', () => {
-  const btn = $('chatButton');
-  if (window.scrollY > 400) { btn.style.display = 'block'; }
-  else { btn.style.display = 'none'; $('commentModal').style.display = 'none'; }
-});
-
 $('chatToggleBtn').onclick = () => {
   const modal = $('commentModal');
-  modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-  if (modal.style.display === 'flex') loadComments();
+  const isOpening = modal.style.display !== 'flex';
+  modal.style.display = isOpening ? 'flex' : 'none';
+  if (isOpening) {
+    loadComments();
+    setTimeout(() => {
+      modal.scrollIntoView({behavior:'smooth', block:'end'});
+      $('commentList').scrollTop = $('commentList').scrollHeight;
+    }, 150);
+  }
 };
-
 $('closeComments').onclick = () => { $('commentModal').style.display = 'none'; };
 
 async function checkUserComment() {
   const userId = getUserID();
   try {
     const res = await fetch(API_BASE + '/api/comments/check/' + userId);
-    const data = await res.json();
-    if (data.success && data.hasComment) {
-      userHasComment = true; userCommentId = data.comment.id;
-      $('userName').value = data.comment.name;
-      $('userComment').value = data.comment.comment;
-      $('submitComment').textContent = 'ویرایش نظر';
-      $('editHint').style.display = 'block';
-    } else {
-      userHasComment = false; userCommentId = null;
-      $('submitComment').textContent = 'ثبت نظر';
-      $('editHint').style.display = 'none';
-    }
-  } catch(e) { console.error(e); }
-}
-
-async function loadComments() {
-  try {
-    await checkUserComment();
-    const res = await fetch(API_BASE + '/api/comments');
-    const data = await res.json();
-    const list = $('commentList');
-    if (!data.success || !data.comments.length) {
-      list.innerHTML = '<p style="text-align:center;color:var(--muted);font-size:13px;">هنوز نظری ثبت نشده است.</p>'; return;
-    }
-    list.innerHTML = data.comments.map(cm => '<div class="commentItem"><div class="meta"><strong>' + escapeHtml(cm.name) + '</strong><small>' + new Date(cm.created_at).toLocaleDateString('fa-IR') + '</small></div><p>' + escapeHtml(cm.comment) + '</p></div>').join('');
-  } catch(e) { $('commentList').innerHTML = '<p style="text-align:center;color:var(--muted);font-size:13px;">خطا در بارگذاری نظرات.</p>'; }
-}
-
-function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, function(m) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; });
-}
-
-$('submitComment').onclick = async () => {
-  const name = $('userName').value.trim();
-  const comment = $('userComment').value.trim();
-  const userId = getUserID();
-  if (!name || !comment) { alert('لطفاً نام و نظر خود را وارد کنید.'); return; }
-  try {
-    let res;
-    if (userHasComment && userCommentId) {
-      res = await fetch(API_BASE + '/api/comments/' + userCommentId, {
-        method: 'PUT', headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ comment: comment, userId: userId })
-      });
-    } else {
-      res = await fetch(API_BASE + '/api/comments', {
-        method: 'POST', headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ name: name, comment: comment, userId: userId })
-      });
-    }
-    const data = await res.json();
-    if (!data.success) { alert(data.error); return; }
-    $('userComment').value = '';
-    await loadComments();
-    alert(userHasComment ? '✅ نظر شما ویرایش شد.' : '✅ نظر شما با موفقیت ثبت شد.');
-  } catch(e) { alert('خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید.'); }
-};
-
-setLanguage(currentLang);
-</script>
-</body>
-</html>
+  

@@ -487,4 +487,123 @@ const translations = {
     project_p2: "In the main mode, six players try to build a large toy while surviving a monster roaming the factory; the seventh player takes on the monster role.",
     project_p3: "<b>Features:</b> Online co-op, Survivor and Monster roles, large factory maps, puzzles, upgradeable abilities, Perks, and cosmetic customization.",
     project_p4: "<b>Official Steam requirements:</b> Minimum Windows 10, Intel Core i5, 8GB RAM, GTX 1050 or Radeon RX 580, 20GB storage. Recommended: 12GB RAM and RTX 2060 Super or RX 5700 XT.",
-    project_quote: "PROJECT: PLAYTIME differs structurally from the single-player chapters but is set in the same Playtime 
+    project_quote: "PROJECT: PLAYTIME differs structurally from the single-player chapters but is set in the same PlaytimeCo. universe and Bigger Bodies Initiative.",
+    footer_title: "Made by Rubika Channel",
+    footer_desc: "Poppy Playtime Archive<br>An interactive information experience for fans"
+  }
+};
+
+let currentLang = localStorage.getItem('poppy_lang') || 'fa';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('poppy_lang', lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (translations[lang][key]) el.innerHTML = translations[lang][key];
+  });
+  $('lang').textContent = lang === 'fa' ? 'ENGLISH' : 'فارسی';
+}
+
+$('lang').onclick = () => setLanguage(currentLang === 'fa' ? 'en' : 'fa');
+
+const themeToggle = $('themeToggle');
+const currentTheme = localStorage.getItem('poppy_theme') || 'dark';
+function setTheme(theme) {
+  document.body.classList.toggle('light-mode', theme === 'light');
+  themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+  localStorage.setItem('poppy_theme', theme);
+}
+themeToggle.onclick = () => setTheme(document.body.classList.contains('light-mode') ? 'dark' : 'light');
+setTheme(currentTheme);
+
+const c = $('bg'), x = c.getContext('2d'); let W, H, pts = [];
+function resize(){ W = c.width = innerWidth * devicePixelRatio; H = c.height = innerHeight * devicePixelRatio; pts = Array.from({length:58}, () => ({x:Math.random()*W, y:Math.random()*H, r:(2+Math.random()*16)*devicePixelRatio, v:.12+Math.random()*.42, a:Math.random()*6.28, s:Math.random()*.7})); }
+function draw(){ x.clearRect(0,0,W,H); for(const p of pts){ p.y -= p.v * devicePixelRatio; p.x += Math.sin(p.a += .006) * p.s; if(p.y < -50) p.y = H + 50; x.beginPath(); x.arc(p.x,p.y,p.r,0,Math.PI*2); x.fillStyle='rgba(255,35,78,.045)'; x.fill(); x.strokeStyle='rgba(255,90,120,.10)'; x.stroke(); } requestAnimationFrame(draw); }
+addEventListener('resize', resize); resize(); draw();
+
+let userHasComment = false;
+let userCommentId = null;
+
+window.addEventListener('scroll', () => {
+  const btn = $('chatButton');
+  if (window.scrollY > 400) { btn.style.display = 'block'; }
+  else { btn.style.display = 'none'; $('commentModal').style.display = 'none'; }
+});
+
+$('chatToggleBtn').onclick = () => {
+  const modal = $('commentModal');
+  modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+  if (modal.style.display === 'flex') loadComments();
+};
+
+$('closeComments').onclick = () => { $('commentModal').style.display = 'none'; };
+
+async function checkUserComment() {
+  const userId = getUserID();
+  try {
+    const res = await fetch(API_BASE + '/api/comments/check/' + userId);
+    const data = await res.json();
+    if (data.success && data.hasComment) {
+      userHasComment = true; userCommentId = data.comment.id;
+      $('userName').value = data.comment.name;
+      $('userComment').value = data.comment.comment;
+      $('submitComment').textContent = 'ویرایش نظر';
+      $('editHint').style.display = 'block';
+    } else {
+      userHasComment = false; userCommentId = null;
+      $('submitComment').textContent = 'ثبت نظر';
+      $('editHint').style.display = 'none';
+    }
+  } catch(e) { console.error(e); }
+}
+
+async function loadComments() {
+  try {
+    await checkUserComment();
+    const res = await fetch(API_BASE + '/api/comments');
+    const data = await res.json();
+    const list = $('commentList');
+    if (!data.success || !data.comments.length) {
+      list.innerHTML = '<p style="text-align:center;color:var(--muted);font-size:13px;">هنوز نظری ثبت نشده است.</p>'; return;
+    }
+    list.innerHTML = data.comments.map(cm => '<div class="commentItem"><div class="meta"><strong>' + escapeHtml(cm.name) + '</strong><small>' + new Date(cm.created_at).toLocaleDateString('fa-IR') + '</small></div><p>' + escapeHtml(cm.comment) + '</p></div>').join('');
+  } catch(e) { $('commentList').innerHTML = '<p style="text-align:center;color:var(--muted);font-size:13px;">خطا در بارگذاری نظرات.</p>'; }
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, function(m) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; });
+}
+
+$('submitComment').onclick = async () => {
+  const name = $('userName').value.trim();
+  const comment = $('userComment').value.trim();
+  const userId = getUserID();
+  if (!name || !comment) { alert('لطفاً نام و نظر خود را وارد کنید.'); return; }
+  try {
+    let res;
+    if (userHasComment && userCommentId) {
+      res = await fetch(API_BASE + '/api/comments/' + userCommentId, {
+        method: 'PUT', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ comment: comment, userId: userId })
+      });
+    } else {
+      res = await fetch(API_BASE + '/api/comments', {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ name: name, comment: comment, userId: userId })
+      });
+    }
+    const data = await res.json();
+    if (!data.success) { alert(data.error); return; }
+    $('userComment').value = '';
+    await loadComments();
+    alert(userHasComment ? '✅ نظر شما ویرایش شد.' : '✅ نظر شما با موفقیت ثبت شد.');
+  } catch(e) { alert('خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید.'); }
+};
+
+setLanguage(currentLang);
+</script>
+</body>
+</html>

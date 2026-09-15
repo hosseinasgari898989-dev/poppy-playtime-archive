@@ -1585,8 +1585,8 @@ const AI_MAX_STORED = 16;
 const AI_MAX_SEND = 4;
 
 let aiChatBusy = false;
-let aiRemaining = 10;
-let aiLimit = 10;
+let aiRemaining = 5;
+let aiLimit = 5;
 let aiSending = false;
 
 function getAiHistory() {
@@ -1603,7 +1603,7 @@ function setAiHistory(h) {
 
 function updateAiBadge(remaining, limit) {
   aiRemaining = remaining;
-  aiLimit = limit || 10;
+  aiLimit = limit || 5;
   const badge = $('aiRemainingBadge');
   const status = $('aiStatusText');
   if (!badge) return;

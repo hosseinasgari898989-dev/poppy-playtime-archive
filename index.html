@@ -1854,7 +1854,87 @@ window.setLanguage = setLanguage = function(lang) {
   updateAiBadge(aiRemaining, aiLimit);
 };
 
-setTimeout(fetchAiStatus, 1500);
+// ============================================
+// AI System Status — Heartbeat + Disabled State
+// ============================================
+let aiSystemDisabled = false;
+let aiStatusTimer = null;
+
+async function checkAiSystemStatus() {
+  try {
+    const res = await fetch(AI_CHAT_STATUS + '?userId=' + encodeURIComponent(getUserID()));
+    const data = await res.json();
+    if (!data.success) return;
+
+    if (typeof data.remaining === 'number') updateAiBadge(data.remaining, data.limit);
+
+    if (data.aiDisabled) {
+      if (!aiSystemDisabled) {
+        aiSystemDisabled = true;
+        applyAiDisabledState(data.resetAt);
+      }
+      if (!aiStatusTimer) aiStatusTimer = setInterval(checkAiSystemStatus, 60000);
+    } else {
+      if (aiSystemDisabled) {
+        aiSystemDisabled = false;
+        removeAiDisabledState();
+        showToast(currentLang === 'fa' ? '🎀 هوش مصنوعی دوباره فعال شد!' : '🎀 AI is back online!', 'success');
+      }
+    }
+  } catch (e) { console.log('AI status check failed'); }
+}
+
+function applyAiDisabledState(resetAt) {
+  const btn = $('aiChatToggleBtn');
+  if (btn) btn.classList.add('disabled');
+
+  // اگه مودال بازه، کاربر رو پرت کن بیرون
+  const modal = $('aiChatModal');
+  if (modal && modal.classList.contains('show')) {
+    const messages = $('aiChatMessages');
+    if (messages) {
+      const kickMsg = document.createElement('div');
+      kickMsg.className = 'aiMsg limit';
+      kickMsg.innerHTML = currentLang === 'fa'
+        ? '🌙 <b>سرویس هوش مصنوعی موقتاً غیرفعال شد</b><br>سهمیه‌ی روزانه مصرف شد.<br>🕒 به‌زودی دوباره فعال می‌شه.'
+        : '🌙 <b>AI service temporarily disabled</b><br>Daily quota exhausted.<br>🕒 It will be back soon.';
+      messages.appendChild(kickMsg);
+      messages.scrollTop = messages.scrollHeight;
+    }
+    setTimeout(() => { closeAiChatModal(); }, 2500);
+  }
+
+  if (!aiStatusTimer) aiStatusTimer = setInterval(checkAiSystemStatus, 60000);
+}
+
+function removeAiDisabledState() {
+  const btn = $('aiChatToggleBtn');
+  if (btn) btn.classList.remove('disabled');
+  if (aiStatusTimer) { clearInterval(aiStatusTimer); aiStatusTimer = null; }
+}
+
+// Override کلیک دکمه‌ی AI
+$('aiChatToggleBtn').onclick = () => {
+  if (aiSystemDisabled) {
+    const msg = currentLang === 'fa'
+      ? '🌙 هوش مصنوعی موقتاً غیرفعاله. به‌زودی دوباره فعال می‌شه.'
+      : '🌙 AI is temporarily disabled. It will be back soon.';
+    showToast(msg, 'error');
+    return;
+  }
+  const m = $('aiChatModal');
+  if (m.classList.contains('show')) closeAiChatModal();
+  else openAiChat();
+};
+
+// چک اولیه + تایمر دوره‌ای
+setTimeout(checkAiSystemStatus, 1500);
+setInterval(checkAiSystemStatus, 60000);
+
+// چک مجدد وقتی کاربر برمی‌گرده به تب
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) checkAiSystemStatus();
+});
 
 setLanguage(currentLang);
 updateFloatingUI();

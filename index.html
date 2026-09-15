@@ -1749,7 +1749,7 @@ async function sendAiMessage() {
 
     if (!data.success) {
       if (data.error === 'daily_limit') {
-        updateAiBadge(0, 10);
+        updateAiBadge(0, 5);
         const limitDiv = document.createElement('div');
         limitDiv.className = 'aiMsg limit';
         limitDiv.innerHTML = currentLang === 'fa'
